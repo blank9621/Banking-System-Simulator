@@ -1,14 +1,17 @@
 #ifndef ADMIN_IG
 #define ADMIN_IG
 #include "User.hpp"
-class Admin : User 
+#include <iostream>
+class Admin : public Bank 
 {
-    using User::User;
     public:
-
+    friend std::ostream& operator<<(std::ostream output, User& user)
+    {
+        return output << user.get_Balance() << ' ' << user.get_id()<<endl;
+    }
     void ChangeBalanceTo(int ID ,long int);
     void TrackTransitionHistory(User &);
-
+    void PrintUsers();
 };
 
 #endif
